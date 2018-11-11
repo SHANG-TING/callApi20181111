@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -9,13 +10,8 @@ import { map } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'callApi20181111';
-  posts: any[] = [];
+  posts: Observable<any[]> = this.http
+    .get('https://jsonplaceholder.typicode.com/posts')
+    .pipe(map((posts: any[]) => posts.map((x: any) => ({ id: x.id, title: x.title }))));
   constructor(private http: HttpClient) {}
-
-  loadData() {
-    this.http
-      .get('https://jsonplaceholder.typicode.com/posts')
-      .pipe(map((posts: any[]) => posts.map((x: any) => ({ id: x.id, title: x.title }))))
-      .subscribe(posts => (this.posts = posts));
-  }
 }

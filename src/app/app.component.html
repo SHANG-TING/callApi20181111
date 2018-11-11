@@ -1,5 +1,4 @@
-<button (click)="loadData()">loadData</button>
 <ul>
-  <li *ngFor="let post of posts">{{ post | json }}</li>
+  <li *ngFor="let post of (posts | async)">{{ post | json }}</li>
 </ul>
 <router-outlet></router-outlet>
