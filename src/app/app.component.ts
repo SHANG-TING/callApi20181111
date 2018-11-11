@@ -9,10 +9,13 @@ import { map } from 'rxjs/operators';
 })
 export class AppComponent {
   title = 'callApi20181111';
-  constructor(private http: HttpClient) {
-    http
+  posts: any[] = [];
+  constructor(private http: HttpClient) {}
+
+  loadData() {
+    this.http
       .get('https://jsonplaceholder.typicode.com/posts')
       .pipe(map((posts: any[]) => posts.map((x: any) => ({ id: x.id, title: x.title }))))
-      .subscribe(data => console.log(data));
+      .subscribe(posts => (this.posts = posts));
   }
 }
