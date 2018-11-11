@@ -1,4 +1,19 @@
 <ul>
-  <li *ngFor="let post of (posts | async)">{{ post | json }}</li>
+  <li>
+    <a [routerLink]="['/page1']"
+       routerLinkActive="router-link-active">Page1</a>
+  </li>
+  <li>
+    <a [routerLink]="['/page2']"
+       routerLinkActive="router-link-active"
+       [routerLinkActiveOptions]="{exact: true}">Page2</a>
+  </li>
+  <li>
+    <a [routerLink]="['/page2', 0]"
+       [routerLinkActive]="['router-link-active', 'special']">Page2 Detail</a>
+  </li>
 </ul>
 <router-outlet></router-outlet>
+<ul>
+  <li *ngFor="let post of (posts | async)">{{ post | json }}</li>
+</ul>
