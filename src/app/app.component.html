@@ -8,9 +8,9 @@
        routerLinkActive="router-link-active"
        [routerLinkActiveOptions]="{exact: true}">Page2</a>
   </li>
-  <li>
-    <a [routerLink]="['/page2', 0]"
-       [routerLinkActive]="['router-link-active', 'special']">Page2 Detail</a>
+  <li *ngFor="let id of [1,2,3]">
+    <a [routerLink]="['/page2', id]"
+       [routerLinkActive]="['router-link-active', 'special']">Page2 Detail With {{ id }}</a>
   </li>
 </ul>
 <router-outlet></router-outlet>
